@@ -19,9 +19,11 @@ public class Projectile extends GameObject {
 	}
 void update() {
 	y-=speed;
-	if(LeagueInvaders.HEIGHT>y) {
+	if(y<0) {
 		isActive=false;
+		
 	}
+	super.update();
 }
 void draw(Graphics g) {
 	if (gotImage) {
