@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (needImage) {
 		    loadImage ("space.png");
 		}
+		obman.getScore();
 	}
 
 	void updateMenuState() {
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		obman.update();
-		if(rocketship.isActive=false) {
+		if(rocketship.isActive==false) {
 			currentState=END;
 		}
 	}
@@ -131,9 +132,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
 				currentState = MENU;
+			rocketship=new Rocketship(260, 700, 50, 50);
+			obman=new ObjectManager(rocketship);
 			} else {
 				currentState++;
 				if(currentState==GAME) {
@@ -160,7 +164,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		obman.addProjectile(rocketship.getProjectile());
 			}
 		}
-	}
+		}
 
 	@Override
 	public void keyReleased(KeyEvent e) {

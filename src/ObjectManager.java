@@ -35,6 +35,7 @@ public class ObjectManager implements ActionListener {
 		for (int i = 0; i < projectiles.size(); i++) {
 			projectiles.get(i).update();
 		}
+		rocks.update();
 		checkCollision();
 		purgeObjects();
 	}
@@ -73,12 +74,14 @@ public class ObjectManager implements ActionListener {
 		for (Alien alien : aliens) {
 			if (rocks.collisionBox.intersects(alien.collisionBox)) {
 				rocks.isActive = false;
+				
 				break;
 			}
 			for (Projectile pro : projectiles) {
 				if (alien.collisionBox.intersects(pro.collisionBox)) {
 					alien.isActive = false;
 					pro.isActive = false;
+					score+=1;
 				}
 			}
 		}
